@@ -1,7 +1,9 @@
 
-import { Component } from "angular2/core";
+import { enableProdMode, Component } from "angular2/core";
 
-import {ArticleComponent} from "./article";
+//enableProdMode();
+
+import {Article, ArticleComponent} from "./article";
 
 @Component({
         selector: 'reddit',
@@ -23,17 +25,32 @@ import {ArticleComponent} from "./article";
             </form>
             
             <div class="ui grid posts">
-                <reddit-article>
+                <reddit-article
+                    *ngFor="let article of sortedArticles()"
+                    [article]="article">
                 </reddit-article>
             </div>
         `
  })
  export class Reddit {
-      constructor() {
+    articles: Article[];
+    
+    sortedArticles(): Article[] {
+        return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
+    }
+     
+    constructor() {
+         this.articles = [
+            new Article('Angular 2', 'http://angular.io', 3),
+            new Article('Fullstack', 'http://fullstack.io', 2),
+            new Article('Angular Homepage', 'http://angular.io', 1),
+        ];
     }
     
     addArticle(title: HTMLInputElement, link: HTMLInputElement):void
     {
-        
+        this.articles.push(new Article(title.value, link.value, 0));
+        title.value = "";
+        link.value = "";
     }
  }

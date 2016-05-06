@@ -1,6 +1,6 @@
 import { Component } from "angular2/core";
 
-class Article {
+export class Article {
   title: string;
   link: string;
   votes: number;
@@ -18,6 +18,15 @@ class Article {
   voteDown(): void {
     this.votes -= 1;
   }
+  
+  domain(): string {
+    try {
+      const link: string = this.link.split('//')[1];
+      return link.split('/')[0];
+    } catch (err) {
+      return null;
+    }
+  }
 }
 
 @Component({
@@ -25,6 +34,7 @@ class Article {
   host: {
     class: 'row'
   },
+  inputs: ['article'],
   template: `
     <div class="four wide column center aligned votes">
       <div class="ui statistic">
@@ -40,6 +50,7 @@ class Article {
       <a class="ui large header" href="{{ article.link }}">
         {{ article.title }}
       </a>
+      <div class="meta">({{ article.domain() }})</div>
       <ul class="ui big horizontal list voters">
         <li class="item">
           <a href (click)="voteUp()">
@@ -59,11 +70,7 @@ class Article {
 })
 export class ArticleComponent {
   article: Article;
-
-  constructor() {
-     this.article = new Article('Angular 2', 'http://angular.io', 10);
-  }
-
+  
   voteUp(): boolean {
     this.article.voteUp();
     return false;

@@ -5,7 +5,7 @@ import {bootstrap} from "angular2/platform/browser";
 
 import {HelloWorld} from "./src/components/hello"; 
 
-import {Reddit} from "./src/components/reddit"; 
+import {RedditApp} from "./src/components/articles/redditApp"; 
 
-bootstrap(Reddit);
+bootstrap(RedditApp);
 

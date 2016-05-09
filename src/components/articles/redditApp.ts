@@ -32,7 +32,7 @@ import {Article, ArticleComponent} from "./article";
             </div>
         `
  })
- export class Reddit {
+ export class RedditApp {
     articles: Article[];
     
     sortedArticles(): Article[] {

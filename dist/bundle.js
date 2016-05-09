@@ -14,8 +14,8 @@ webpackJsonp([0],{
 	/// <reference path="./node_modules/angular2/typings/browser.d.ts" />
 	"use strict";
 	var browser_1 = __webpack_require__(2);
-	var reddit_1 = __webpack_require__(236);
-	browser_1.bootstrap(reddit_1.Reddit);
+	var redditApp_1 = __webpack_require__(236);
+	browser_1.bootstrap(redditApp_1.RedditApp);
 
 
 /***/ },
@@ -36,33 +36,33 @@ webpackJsonp([0],{
 	var core_1 = __webpack_require__(26);
 	//enableProdMode();
 	var article_1 = __webpack_require__(237);
-	var Reddit = (function () {
-	    function Reddit() {
+	var RedditApp = (function () {
+	    function RedditApp() {
 	        this.articles = [
 	            new article_1.Article('Angular 2', 'http://angular.io', 3),
 	            new article_1.Article('Fullstack', 'http://fullstack.io', 2),
 	            new article_1.Article('Angular Homepage', 'http://angular.io', 1),
 	        ];
 	    }
-	    Reddit.prototype.sortedArticles = function () {
+	    RedditApp.prototype.sortedArticles = function () {
 	        return this.articles.sort(function (a, b) { return b.votes - a.votes; });
 	    };
-	    Reddit.prototype.addArticle = function (title, link) {
+	    RedditApp.prototype.addArticle = function (title, link) {
 	        this.articles.push(new article_1.Article(title.value, link.value, 0));
 	        title.value = "";
 	        link.value = "";
 	    };
-	    Reddit = __decorate([
+	    RedditApp = __decorate([
 	        core_1.Component({
 	            selector: 'reddit',
 	            directives: [article_1.ArticleComponent],
 	            template: "\n           <form class=\"ui large form segment\">\n                <h3 class=\"ui header\">Add a Link</h3>\n                <div class=\"field\">\n                    <label for=\"title\">Title:</label>\n                    <input name=\"title\" #newtitle/>\n                </div>\n                <div class=\"field\">\n                    <label for=\"link\">Link:</label>\n                    <input name=\"link\" #newlink/>\n                </div>\n                <button (click)=\"addArticle(newtitle, newlink)\" class=\"ui positive right floated button\">\n                        Submit link\n                </button>\n            </form>\n            \n            <div class=\"ui grid posts\">\n                <reddit-article\n                    *ngFor=\"let article of sortedArticles()\"\n                    [article]=\"article\">\n                </reddit-article>\n            </div>\n        "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Reddit);
-	    return Reddit;
+	    ], RedditApp);
+	    return RedditApp;
 	}());
-	exports.Reddit = Reddit;
+	exports.RedditApp = RedditApp;
 
 
 /***/ },

@@ -7,5 +7,7 @@ import {HelloWorld} from "./src/components/hello";
 
 import {RedditApp} from "./src/components/articles/redditApp"; 
 
-bootstrap(RedditApp);
+import {InventoryApp} from "./src/components/inventory/inventoryApp"; 
+
+bootstrap(InventoryApp);
 

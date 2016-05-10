@@ -14,8 +14,8 @@ webpackJsonp([0],{
 	/// <reference path="./node_modules/angular2/typings/browser.d.ts" />
 	"use strict";
 	var browser_1 = __webpack_require__(2);
-	var redditApp_1 = __webpack_require__(236);
-	browser_1.bootstrap(redditApp_1.RedditApp);
+	var inventoryApp_1 = __webpack_require__(236);
+	browser_1.bootstrap(inventoryApp_1.InventoryApp);
 
 
 /***/ },
@@ -34,35 +34,46 @@ webpackJsonp([0],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(26);
-	//enableProdMode();
-	var article_1 = __webpack_require__(237);
-	var RedditApp = (function () {
-	    function RedditApp() {
-	        this.articles = [
-	            new article_1.Article('Angular 2', 'http://angular.io', 3),
-	            new article_1.Article('Fullstack', 'http://fullstack.io', 2),
-	            new article_1.Article('Angular Homepage', 'http://angular.io', 1),
+	var productsList_1 = __webpack_require__(237);
+	/**
+	 * Provides a `Product` object
+	 */
+	var Product = (function () {
+	    function Product(sku, name, imageUrl, department, price) {
+	        this.sku = sku;
+	        this.name = name;
+	        this.imageUrl = imageUrl;
+	        this.department = department;
+	        this.price = price;
+	    }
+	    return Product;
+	}());
+	exports.Product = Product;
+	/**
+	 * @InventoryApp: the top-level component for our application
+	 */
+	var InventoryApp = (function () {
+	    function InventoryApp() {
+	        this.products = [
+	            new Product('MYSHOES', 'Black Running Shoes', '/resources/images/products/black-shoes.jpg', ['Men', 'Shoes', 'Running Shoes'], 109.99),
+	            new Product('NEATOJACKET', 'Blue Jacket', '/resources/images/products/blue-jacket.jpg', ['Women', 'Apparel', 'Jackets & Vests'], 238.99),
+	            new Product('NICEHAT', 'A Nice Black Hat', '/resources/images/products/black-hat.jpg', ['Men', 'Accessories', 'Hats'], 29.99)
 	        ];
 	    }
-	    RedditApp.prototype.sortedArticles = function () {
-	        return this.articles.sort(function (a, b) { return b.votes - a.votes; });
+	    InventoryApp.prototype.productWasSelected = function (product) {
+	        console.log('Product clicked: ', product);
 	    };
-	    RedditApp.prototype.addArticle = function (title, link) {
-	        this.articles.push(new article_1.Article(title.value, link.value, 0));
-	        title.value = "";
-	        link.value = "";
-	    };
-	    RedditApp = __decorate([
+	    InventoryApp = __decorate([
 	        core_1.Component({
-	            selector: 'reddit',
-	            directives: [article_1.ArticleComponent],
-	            template: "\n           <form class=\"ui large form segment\">\n                <h3 class=\"ui header\">Add a Link</h3>\n                <div class=\"field\">\n                    <label for=\"title\">Title:</label>\n                    <input name=\"title\" #newtitle/>\n                </div>\n                <div class=\"field\">\n                    <label for=\"link\">Link:</label>\n                    <input name=\"link\" #newlink/>\n                </div>\n                <button (click)=\"addArticle(newtitle, newlink)\" class=\"ui positive right floated button\">\n                        Submit link\n                </button>\n            </form>\n            \n            <div class=\"ui grid posts\">\n                <reddit-article\n                    *ngFor=\"let article of sortedArticles()\"\n                    [article]=\"article\">\n                </reddit-article>\n            </div>\n        "
+	            selector: 'inventory-app',
+	            directives: [productsList_1.ProductsList],
+	            template: "\n  <div class=\"inventory-app\">\n    <products-list \n      [productList]=\"products\" \n      (onProductSelected)=\"productWasSelected($event)\">\n    </products-list>\n  </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], RedditApp);
-	    return RedditApp;
+	    ], InventoryApp);
+	    return InventoryApp;
 	}());
-	exports.RedditApp = RedditApp;
+	exports.InventoryApp = InventoryApp;
 
 
 /***/ },
@@ -81,55 +92,75 @@ webpackJsonp([0],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(26);
-	var Article = (function () {
-	    function Article(title, link, votes) {
-	        this.title = title;
-	        this.link = link;
-	        this.votes = votes || 0;
+	var productRow_1 = __webpack_require__(238);
+	/**
+	 * @ProductsList: A component for rendering all ProductRows and
+	 * storing the currently selected Product
+	 */
+	var ProductsList = (function () {
+	    function ProductsList() {
+	        this.onProductSelected = new core_1.EventEmitter();
 	    }
-	    Article.prototype.voteUp = function () {
-	        this.votes += 1;
+	    ProductsList.prototype.clicked = function (product) {
+	        this.currentProduct = product;
+	        this.onProductSelected.emit(product);
 	    };
-	    Article.prototype.voteDown = function () {
-	        this.votes -= 1;
-	    };
-	    Article.prototype.domain = function () {
-	        try {
-	            var link = this.link.split('//')[1];
-	            return link.split('/')[0];
+	    ProductsList.prototype.isSelected = function (product) {
+	        if (!product || !this.currentProduct) {
+	            return false;
 	        }
-	        catch (err) {
-	            return null;
-	        }
+	        return product.sku === this.currentProduct.sku;
 	    };
-	    return Article;
-	}());
-	exports.Article = Article;
-	var ArticleComponent = (function () {
-	    function ArticleComponent() {
-	    }
-	    ArticleComponent.prototype.voteUp = function () {
-	        this.article.voteUp();
-	        return false;
-	    };
-	    ArticleComponent.prototype.voteDown = function () {
-	        this.article.voteDown();
-	        return false;
-	    };
-	    ArticleComponent = __decorate([
+	    ProductsList = __decorate([
 	        core_1.Component({
-	            selector: 'reddit-article',
-	            host: {
-	                class: 'row'
-	            },
-	            inputs: ['article'],
-	            template: "\n    <div class=\"four wide column center aligned votes\">\n      <div class=\"ui statistic\">\n        <div class=\"value\">\n          {{ article.votes }}\n        </div>\n        <div class=\"label\">\n          Points\n        </div>\n      </div>\n    </div>\n    <div class=\"twelve wide column\">\n      <a class=\"ui large header\" href=\"{{ article.link }}\">\n        {{ article.title }}\n      </a>\n      <div class=\"meta\">({{ article.domain() }})</div>\n      <ul class=\"ui big horizontal list voters\">\n        <li class=\"item\">\n          <a href (click)=\"voteUp()\">\n            <i class=\"arrow up icon\"></i>\n              upvote \n            </a>\n        </li>\n        <li class=\"item\"> \n          <a href (click)=\"voteDown()\">\n            <i class=\"arrow down icon\"></i>\n            downvote\n          </a>\n        </li>\n      </ul>\n    </div>\n  "
+	            selector: 'products-list',
+	            directives: [productRow_1.ProductRow],
+	            inputs: ['productList'],
+	            outputs: ['onProductSelected'],
+	            template: "\n  <div class=\"ui items\">\n    <product-row \n      *ngFor=\"#myProduct of productList\" \n      [product]=\"myProduct\" \n      (click)='clicked(myProduct)'\n      [class.selected]=\"isSelected(myProduct)\">\n    </product-row>\n  </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], ArticleComponent);
-	    return ArticleComponent;
+	    ], ProductsList);
+	    return ProductsList;
 	}());
-	exports.ArticleComponent = ArticleComponent;
+	exports.ProductsList = ProductsList;
+
+
+/***/ },
+
+/***/ 238:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(26);
+	/**
+	 * @ProductRow: A component for the view of single Product
+	 */
+	var ProductRow = (function () {
+	    function ProductRow() {
+	    }
+	    ProductRow = __decorate([
+	        core_1.Component({
+	            selector: 'product-row',
+	            inputs: ['product'],
+	            host: { 'class': 'item' },
+	            //directives: [ProductImage, ProductDepartment, PriceDisplay],
+	            template: "\n  <product-image [product]=\"product\"></product-image>\n  <div class=\"content\">\n    <div class=\"header\">{{ product.name }}</div>\n    <div class=\"meta\">\n      <div class=\"product-sku\">SKU #{{ product.sku }}</div>\n    </div>\n    <div class=\"description\">\n      <product-department [product]=\"product\"></product-department>\n    </div>\n  </div>\n  <price-display [price]=\"product.price\"></price-display>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], ProductRow);
+	    return ProductRow;
+	}());
+	exports.ProductRow = ProductRow;
 
 
 /***/ }

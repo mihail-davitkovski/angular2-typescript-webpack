@@ -117,7 +117,7 @@ webpackJsonp([0],{
 	            directives: [productRow_1.ProductRow],
 	            inputs: ['productList'],
 	            outputs: ['onProductSelected'],
-	            template: "\n  <div class=\"ui items\">\n    <product-row \n      *ngFor=\"#myProduct of productList\" \n      [product]=\"myProduct\" \n      (click)='clicked(myProduct)'\n      [class.selected]=\"isSelected(myProduct)\">\n    </product-row>\n  </div>\n  "
+	            template: "\n  <div class=\"ui items\">\n    <product-row \n      *ngFor=\"let myProduct of productList\" \n      [product]=\"myProduct\" \n      (click)='clicked(myProduct)'\n      [class.selected]=\"isSelected(myProduct)\">\n    </product-row>\n  </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], ProductsList);
@@ -142,6 +142,9 @@ webpackJsonp([0],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(26);
+	var productImage_1 = __webpack_require__(239);
+	var productDepartment_1 = __webpack_require__(240);
+	var priceDisplay_1 = __webpack_require__(241);
 	/**
 	 * @ProductRow: A component for the view of single Product
 	 */
@@ -153,7 +156,7 @@ webpackJsonp([0],{
 	            selector: 'product-row',
 	            inputs: ['product'],
 	            host: { 'class': 'item' },
-	            //directives: [ProductImage, ProductDepartment, PriceDisplay],
+	            directives: [productImage_1.ProductImage, productDepartment_1.ProductDepartment, priceDisplay_1.PriceDisplay],
 	            template: "\n  <product-image [product]=\"product\"></product-image>\n  <div class=\"content\">\n    <div class=\"header\">{{ product.name }}</div>\n    <div class=\"meta\">\n      <div class=\"product-sku\">SKU #{{ product.sku }}</div>\n    </div>\n    <div class=\"description\">\n      <product-department [product]=\"product\"></product-department>\n    </div>\n  </div>\n  <price-display [price]=\"product.price\"></price-display>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -161,6 +164,116 @@ webpackJsonp([0],{
 	    return ProductRow;
 	}());
 	exports.ProductRow = ProductRow;
+
+
+/***/ },
+
+/***/ 239:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(26);
+	/**
+	 * @ProductImage: A component to show a single Product's image
+	 */
+	var ProductImage = (function () {
+	    function ProductImage() {
+	    }
+	    ProductImage = __decorate([
+	        core_1.Component({
+	            selector: 'product-image',
+	            host: { class: 'ui small image' },
+	            inputs: ['product'],
+	            template: "\n  <img class=\"product-image\" [src]=\"product.imageUrl\">\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], ProductImage);
+	    return ProductImage;
+	}());
+	exports.ProductImage = ProductImage;
+
+
+/***/ },
+
+/***/ 240:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(26);
+	/**
+	 * @ProductDepartment: A component to show the breadcrumbs to a
+	 * Product's department
+	 */
+	var ProductDepartment = (function () {
+	    function ProductDepartment() {
+	    }
+	    ProductDepartment = __decorate([
+	        core_1.Component({
+	            selector: 'product-department',
+	            inputs: ['product'],
+	            template: "\n  <div class=\"product-department\">\n    <span *ngFor=\"let name of product.department; let i=index\">\n      <a href=\"#\">{{ name }}</a>\n      <span>{{i < (product.department.length-1) ? '>' : ''}}</span>\n    </span>\n  </div>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], ProductDepartment);
+	    return ProductDepartment;
+	}());
+	exports.ProductDepartment = ProductDepartment;
+
+
+/***/ },
+
+/***/ 241:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(26);
+	/**
+
+	/**
+	 * @PriceDisplay: A component to show the price of a
+	 * Product
+	 */
+	var PriceDisplay = (function () {
+	    function PriceDisplay() {
+	    }
+	    PriceDisplay = __decorate([
+	        core_1.Component({
+	            selector: 'price-display',
+	            inputs: ['price'],
+	            template: "\n  <div class=\"price-display\">${{ price }}</div>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], PriceDisplay);
+	    return PriceDisplay;
+	}());
+	exports.PriceDisplay = PriceDisplay;
 
 
 /***/ }

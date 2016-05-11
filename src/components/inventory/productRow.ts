@@ -2,6 +2,12 @@ import { enableProdMode, Component } from "angular2/core";
 
 import {Product} from "./inventoryApp";
 
+import {ProductImage} from "./productImage";
+
+import {ProductDepartment} from "./productDepartment";
+
+import {PriceDisplay} from "./priceDisplay";
+
 /**
  * @ProductRow: A component for the view of single Product
  */

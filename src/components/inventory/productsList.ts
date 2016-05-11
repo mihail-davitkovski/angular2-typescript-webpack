@@ -16,7 +16,7 @@ import {ProductRow} from "./productRow";
   template: `
   <div class="ui items">
     <product-row 
-      *ngFor="#myProduct of productList" 
+      *ngFor="let myProduct of productList" 
       [product]="myProduct" 
       (click)='clicked(myProduct)'
       [class.selected]="isSelected(myProduct)">

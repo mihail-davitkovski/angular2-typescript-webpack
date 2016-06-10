@@ -9,5 +9,9 @@ import {RedditApp} from "./src/components/articles/redditApp";
 
 import {InventoryApp} from "./src/components/inventory/inventoryApp"; 
 
-bootstrap(InventoryApp);
+import {DemoFormSku} from "./src/components/forms/demo_form_sku"; 
+
+import {DemoFormSkuBuilder} from "./src/components/forms/demo_form_sku_with_builder"; 
+
+bootstrap(DemoFormSkuBuilder);
 

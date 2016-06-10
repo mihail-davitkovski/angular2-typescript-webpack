@@ -19,7 +19,7 @@ export class Product {
  * @InventoryApp: the top-level component for our application
  */
 @Component({
-  selector: 'inventory-app',
+  selector: 'content',
   directives: [ProductsList],
   template: `
   <div class="inventory-app">

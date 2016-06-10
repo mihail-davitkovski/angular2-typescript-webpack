@@ -6,7 +6,7 @@ import { enableProdMode, Component } from "angular2/core";
 import {Article, ArticleComponent} from "./article";
 
 @Component({
-        selector: 'reddit',
+        selector: 'content',
         directives: [ArticleComponent],
         template: `
            <form class="ui large form segment">

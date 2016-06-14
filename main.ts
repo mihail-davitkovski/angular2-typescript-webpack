@@ -11,5 +11,7 @@ import {DemoFormSkuComponent} from "./app/forms/demo-form-sku.component";
 
 import {DemoFormSkuBuilderComponent} from "./app/forms/demo-form-sku-with-builder.component"; 
 
-bootstrap(InventoryComponent);
+import {DemoFormWithCustomValidationsComponent} from "./app/forms/demo-form-with-custom-validations.component"; 
+
+bootstrap(DemoFormWithCustomValidationsComponent);
 

@@ -1,7 +1,7 @@
 
 import { enableProdMode, Component } from "angular2/core";
 
-import {ProductsList} from "./productsList";
+import { ProductsListComponent } from "./products-list.component";
 /**
  * Provides a `Product` object
  */
@@ -20,7 +20,7 @@ export class Product {
  */
 @Component({
   selector: 'content',
-  directives: [ProductsList],
+  directives: [ProductsListComponent],
   template: `
   <div class="inventory-app">
     <products-list 
@@ -30,7 +30,7 @@ export class Product {
   </div>
   `
 })
-export class InventoryApp {
+export class InventoryComponent {
   products: Product[];
 
   constructor() {

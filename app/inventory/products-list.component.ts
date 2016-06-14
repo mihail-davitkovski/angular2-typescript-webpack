@@ -1,8 +1,8 @@
 import { enableProdMode, Component, EventEmitter } from "angular2/core";
 
-import {Product} from "./inventoryApp";
+import { Product } from "./inventory.component";
 
-import {ProductRow} from "./productRow";
+import { ProductRowComponent } from "./product-row.component";
 
 /**
  * @ProductsList: A component for rendering all ProductRows and 
@@ -10,7 +10,7 @@ import {ProductRow} from "./productRow";
  */
 @Component({
   selector: 'products-list',
-  directives: [ProductRow],
+  directives: [ProductRowComponent],
   inputs: ['productList'],
   outputs: ['onProductSelected'],
   template: `
@@ -24,7 +24,7 @@ import {ProductRow} from "./productRow";
   </div>
   `
 })
-export class ProductsList {
+export class ProductsListComponent {
   /**
    * @input productList - the Product[] passed to us
    */

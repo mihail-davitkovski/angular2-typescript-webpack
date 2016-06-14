@@ -1,6 +1,6 @@
 import { Component } from "angular2/core";
 
-import {Product} from "./inventoryApp";
+import {Product} from "./inventory.component";
 
 /**
  * @ProductImage: A component to show a single Product's image 
@@ -13,6 +13,6 @@ import {Product} from "./inventoryApp";
   <img class="product-image" [src]="product.imageUrl">
   `
 })
-export class ProductImage {
+export class ProductImageComponent {
   product: Product;
 }

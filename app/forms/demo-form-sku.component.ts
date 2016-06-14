@@ -24,7 +24,7 @@ import { FORM_DIRECTIVES } from 'angular2/common';
   </div>
   `
 })
-export class DemoFormSku {
+export class DemoFormSkuComponent {
   onSubmit(value: string): void {
     console.log('you submitted value: ', value);
   }

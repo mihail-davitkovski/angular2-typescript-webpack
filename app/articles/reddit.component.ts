@@ -3,7 +3,7 @@ import { enableProdMode, Component } from "angular2/core";
 
 //enableProdMode();
 
-import {Article, ArticleComponent} from "./article";
+import {Article, ArticleComponent} from "./article.component";
 
 @Component({
         selector: 'content',
@@ -32,7 +32,7 @@ import {Article, ArticleComponent} from "./article";
             </div>
         `
  })
- export class RedditApp {
+ export class RedditComponent {
     articles: Article[];
     
     sortedArticles(): Article[] {

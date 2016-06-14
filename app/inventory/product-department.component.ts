@@ -1,6 +1,6 @@
 import { Component } from "angular2/core";
 
-import {Product} from "./inventoryApp";
+import {Product} from "./inventory.component";
 /**
  * @ProductDepartment: A component to show the breadcrumbs to a 
  * Product's department
@@ -17,6 +17,6 @@ import {Product} from "./inventoryApp";
   </div>
   `
 })
-export class ProductDepartment {
+export class ProductDepartmentComponent {
   product: Product;
 }

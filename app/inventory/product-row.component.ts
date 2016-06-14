@@ -1,12 +1,12 @@
 import { enableProdMode, Component } from "angular2/core";
 
-import {Product} from "./inventoryApp";
+import { Product } from "./inventory.component";
 
-import {ProductImage} from "./productImage";
+import { ProductImageComponent } from "./product-image.component";
 
-import {ProductDepartment} from "./productDepartment";
+import { ProductDepartmentComponent } from "./product-department.component";
 
-import {PriceDisplay} from "./priceDisplay";
+import { PriceDisplayComponent } from "./price-display.component";
 
 /**
  * @ProductRow: A component for the view of single Product
@@ -15,7 +15,7 @@ import {PriceDisplay} from "./priceDisplay";
   selector: 'product-row',
   inputs: ['product'],
   host: {'class': 'item'},
-  directives: [ProductImage, ProductDepartment, PriceDisplay],
+  directives: [ProductImageComponent, ProductDepartmentComponent, PriceDisplayComponent],
   template: `
   <product-image [product]="product"></product-image>
   <div class="content">
@@ -30,6 +30,6 @@ import {PriceDisplay} from "./priceDisplay";
   <price-display [price]="product.price"></price-display>
   `
 })
-export class ProductRow {
+export class ProductRowComponent {
   product: Product;
 }

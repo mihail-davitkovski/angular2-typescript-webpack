@@ -28,7 +28,7 @@ import {
   </div>
   `
 })
-export class DemoFormSkuBuilder {
+export class DemoFormSkuBuilderComponent {
   myForm: ControlGroup;
 
   constructor(fb: FormBuilder) {

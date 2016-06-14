@@ -15,7 +15,7 @@ var config = {
     // specify that react should be part of that chunk
     entry: 
     {
-        app: ['./index.ts'],
+        app: ['./main.ts'],
         //vendors: ['polyfills', 'angular2', 'angular2/platform']
         vendors:['polyfills', 'angularCore', 'browser']
         //vendors: ['es6-shim', 'polyfills', 'rxjs', 'angular2']

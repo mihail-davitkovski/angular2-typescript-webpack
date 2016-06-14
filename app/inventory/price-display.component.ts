@@ -12,6 +12,6 @@ import { Component } from "angular2/core";
   <div class="price-display">\${{ price }}</div>
   `
 })
-export class PriceDisplay {
+export class PriceDisplayComponent {
   price: number;
 }

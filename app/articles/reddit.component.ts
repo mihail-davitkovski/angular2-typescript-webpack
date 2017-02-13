@@ -1,36 +1,13 @@
 
-import { enableProdMode, Component } from "angular2/core";
+import { enableProdMode, Component } from "@angular/core";
 
-//enableProdMode();
+import {ArticleComponent} from "./article.component";
 
-import {Article, ArticleComponent} from "./article.component";
+import {Article} from "./model/article.model";
 
 @Component({
         selector: 'content',
-        directives: [ArticleComponent],
-        template: `
-           <form class="ui large form segment">
-                <h3 class="ui header">Add a Link</h3>
-                <div class="field">
-                    <label for="title">Title:</label>
-                    <input name="title" #newtitle/>
-                </div>
-                <div class="field">
-                    <label for="link">Link:</label>
-                    <input name="link" #newlink/>
-                </div>
-                <button (click)="addArticle(newtitle, newlink)" class="ui positive right floated button">
-                        Submit link
-                </button>
-            </form>
-            
-            <div class="ui grid posts">
-                <reddit-article
-                    *ngFor="let article of sortedArticles()"
-                    [article]="article">
-                </reddit-article>
-            </div>
-        `
+        templateUrl: '../templates/reddit.component.html'
  })
  export class RedditComponent {
     articles: Article[];
@@ -47,10 +24,11 @@ import {Article, ArticleComponent} from "./article.component";
         ];
     }
     
-    addArticle(title: HTMLInputElement, link: HTMLInputElement):void
+    addArticle(title: HTMLInputElement, link: HTMLInputElement):boolean
     {
         this.articles.push(new Article(title.value, link.value, 0));
         title.value = "";
         link.value = "";
+        return false;
     }
  }

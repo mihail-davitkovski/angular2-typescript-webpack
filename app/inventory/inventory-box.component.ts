@@ -1,26 +1,14 @@
 
-import { enableProdMode, Component } from "angular2/core";
+import { enableProdMode, Component } from "@angular/core";
 
 import { ProductsListComponent } from "./products-list.component";
-/**
- * Provides a `Product` object
- */
-export class Product {
-  constructor(
-    public sku: string,
-    public name: string,
-    public imageUrl: string,
-    public department: string[],
-    public price: number) {
-  }
-}
 
+import { Product } from "./model/product.model";
 /**
  * @InventoryApp: the top-level component for our application
  */
 @Component({
   selector: 'content',
-  directives: [ProductsListComponent],
   template: `
   <div class="inventory-app">
     <products-list 
@@ -30,7 +18,7 @@ export class Product {
   </div>
   `
 })
-export class InventoryComponent {
+export class InventoryBoxComponent {
   products: Product[];
 
   constructor() {

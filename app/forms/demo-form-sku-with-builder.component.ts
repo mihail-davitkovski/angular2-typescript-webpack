@@ -1,35 +1,15 @@
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import {
-  FORM_DIRECTIVES,
   FormBuilder,
-  ControlGroup
-} from 'angular2/common';
+  FormGroup
+} from '@angular/forms';
 
 @Component({
-  selector: 'content',
-  directives: [FORM_DIRECTIVES],
-  template: `
-  <div class="ui raised segment">
-    <h2 class="ui header">Demo Form: Sku with Builder</h2>
-    <form [ngFormModel]="myForm" 
-          (ngSubmit)="onSubmit(myForm.value)"
-          class="ui form">
-
-      <div class="field">
-        <label for="skuInput">SKU</label>
-        <input type="text" 
-               id="skuInput" 
-               placeholder="SKU"
-               [ngFormControl]="myForm.controls['sku']">
-      </div>
-
-    <button type="submit" class="ui button">Submit</button>
-    </form>
-  </div>
-  `
+  selector: 'demo-form-sku-builder',
+  templateUrl: '../templates/demo-form-sku-with-builder.component.html'
 })
 export class DemoFormSkuBuilderComponent {
-  myForm: ControlGroup;
+  myForm: FormGroup;
 
   constructor(fb: FormBuilder) {
     this.myForm = fb.group({

@@ -1,6 +1,6 @@
-import { Component } from "angular2/core";
+import { Component } from "@angular/core";
 
-import {Product} from "./inventory.component";
+import {Product} from "./model/product.model";
 
 /**
  * @ProductImage: A component to show a single Product's image 

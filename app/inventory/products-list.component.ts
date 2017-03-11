@@ -1,6 +1,6 @@
-import { enableProdMode, Component, EventEmitter } from "angular2/core";
+import { enableProdMode, Component, EventEmitter } from "@angular/core";
 
-import { Product } from "./inventory.component";
+import {Product} from "./model/product.model";
 
 import { ProductRowComponent } from "./product-row.component";
 
@@ -10,7 +10,6 @@ import { ProductRowComponent } from "./product-row.component";
  */
 @Component({
   selector: 'products-list',
-  directives: [ProductRowComponent],
   inputs: ['productList'],
   outputs: ['onProductSelected'],
   template: `

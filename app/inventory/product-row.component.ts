@@ -1,6 +1,6 @@
-import { enableProdMode, Component } from "angular2/core";
+import { enableProdMode, Component } from "@angular/core";
 
-import { Product } from "./inventory.component";
+import {Product} from "./model/product.model";
 
 import { ProductImageComponent } from "./product-image.component";
 
@@ -15,7 +15,6 @@ import { PriceDisplayComponent } from "./price-display.component";
   selector: 'product-row',
   inputs: ['product'],
   host: {'class': 'item'},
-  directives: [ProductImageComponent, ProductDepartmentComponent, PriceDisplayComponent],
   template: `
   <product-image [product]="product"></product-image>
   <div class="content">

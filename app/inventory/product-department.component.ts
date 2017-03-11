@@ -1,6 +1,6 @@
-import { Component } from "angular2/core";
+import { Component } from "@angular/core";
 
-import {Product} from "./inventory.component";
+import {Product} from "./model/product.model";
 /**
  * @ProductDepartment: A component to show the breadcrumbs to a 
  * Product's department

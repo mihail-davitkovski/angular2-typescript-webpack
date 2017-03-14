@@ -4,13 +4,7 @@ import {
     Routes
 } from '@angular/router';
 
+import {AppModule} from "./app.module";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { InventoryAppModule } from "./app/inventory/inventory.module";
-
-const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: InventoryAppModule }
-];
-
-platformBrowserDynamic().bootstrapModule(InventoryAppModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

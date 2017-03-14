@@ -9,7 +9,9 @@ var config = {
     entry: 
     {
         app: ['./main.ts'],
-        vendors:['@angular/core']
+        vendors:['@angular/core', "@angular/common", "@angular/compiler", 
+        "@angular/forms", "@angular/platform-browser", "@angular/platform-browser-dynamic", 
+        "@angular/router"]
     },
     // We add a plugin called CommonsChunkPlugin that will take the vendors chunk
     // and create a vendors.js file. As you can see the first argument matches the key

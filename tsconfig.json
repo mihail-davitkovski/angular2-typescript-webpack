@@ -6,7 +6,8 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "lib": ["es5", "es6", "dom"]
     },
     "exclude": [
         "node_modules"

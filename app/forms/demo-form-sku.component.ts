@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-form-sku',
   templateUrl: '../templates/demo-form-sku.component.html'
 })
 export class DemoFormSkuComponent {

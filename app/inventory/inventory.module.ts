@@ -19,6 +19,5 @@ import { ProductRowComponent } from "./product-row.component";
     ProductsListComponent
   ],
   imports: [ BrowserModule ],
-  bootstrap: [ InventoryBoxComponent ]
 })
 export class InventoryAppModule {}

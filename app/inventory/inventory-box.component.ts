@@ -8,7 +8,6 @@ import { Product } from "./model/product.model";
  * @InventoryApp: the top-level component for our application
  */
 @Component({
-  selector: 'content',
   template: `
   <div class="inventory-app">
     <products-list 

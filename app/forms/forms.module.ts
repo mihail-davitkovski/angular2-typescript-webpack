@@ -11,14 +11,13 @@ import { FormsBox } from "./forms-box.component";
 
 @NgModule({
   declarations: [
-      FormsBox,
+    FormsBox,
     DemoFormSkuComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule
-  ],
-  bootstrap: [ FormsBox ]
+  ]
 })
-export class FormsAppModule {}
+export class FormsAppModule { }

@@ -17,7 +17,6 @@ import { ProductRowComponent } from "./product-row.component";
     PriceDisplayComponent,
     ProductRowComponent,
     ProductsListComponent
-  ],
-  imports: [ BrowserModule ],
+  ]
 })
 export class InventoryAppModule {}

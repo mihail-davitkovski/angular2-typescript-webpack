@@ -10,13 +10,16 @@ import { ProductDepartmentComponent } from "./product-department.component";
 import { ProductRowComponent } from "./product-row.component";
 
 @NgModule({
-  declarations: [ 
+  imports: [
+    BrowserModule,
+  ],
+  declarations: [
     InventoryBoxComponent,
-    ProductImageComponent, 
-    ProductDepartmentComponent, 
+    ProductImageComponent,
+    ProductDepartmentComponent,
     PriceDisplayComponent,
     ProductRowComponent,
     ProductsListComponent
   ]
 })
-export class InventoryAppModule {}
+export class InventoryAppModule { }

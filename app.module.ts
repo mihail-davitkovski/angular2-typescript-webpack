@@ -4,7 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from "./app.component";
 
 @NgModule({
+    //Other  modules whose exported classes are needed 
+    //by component templates declared in this module
     imports: [
+        BrowserModule,
         AppRoutingModule
         ],
     declarations: [
@@ -14,6 +17,8 @@ import { AppComponent } from "./app.component";
 
     ],
     //this is only set by the root module
+    //The main appllication view called the root component,
+    //that hosts all other app views.
     bootstrap: [AppComponent],
 })
 export class AppModule { }  

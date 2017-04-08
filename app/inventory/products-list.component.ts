@@ -1,5 +1,5 @@
 import { enableProdMode, Component, EventEmitter } from "@angular/core";
-
+import { Router } from '@angular/router'; 
 import {Product} from "./model/product.model";
 
 import { ProductRowComponent } from "./product-row.component";
@@ -41,13 +41,14 @@ export class ProductsListComponent {
    */
   currentProduct: Product;
 
-  constructor() {
+  constructor(private router: Router) {
     this.onProductSelected = new EventEmitter<Product>();
   }
 
   clicked(product: Product): void {
     this.currentProduct = product;
     this.onProductSelected.emit(product);
+    this.router.navigate(['/product', product.sku]);
   }
 
   isSelected(product: Product): boolean {

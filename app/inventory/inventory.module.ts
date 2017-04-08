@@ -1,6 +1,8 @@
 
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
+
+import { InventoryRoutingModule } from "./inventory-routing.module";
 
 import { InventoryBoxComponent } from "./inventory-box.component";
 import { ProductsListComponent } from "./products-list.component";
@@ -10,9 +12,17 @@ import { ProductDepartmentComponent } from "./product-department.component";
 import { ProductRowComponent } from "./product-row.component";
 
 @NgModule({
+  //View classes that are defined in imports section 
+  // have private access and can be used within templates
+  //in this module
   imports: [
-    BrowserModule,
+    CommonModule,
+    InventoryRoutingModule
   ],
+  //The View classes are defined here: There are three,
+  //Components, Directives and Pipes. They have private access by default
+  // and can be used only in this module, otherwise they should be exported, i.e
+  //to be placed in the exports array, exports:[]
   declarations: [
     InventoryBoxComponent,
     ProductImageComponent,
@@ -22,4 +32,4 @@ import { ProductRowComponent } from "./product-row.component";
     ProductsListComponent
   ]
 })
-export class InventoryAppModule { }
+export class InventoryModule { }

@@ -2,6 +2,7 @@
 // Add WebPack to use the included CommonsChunkPlugin
 var webpack = require('webpack');
 var node_dir = __dirname + '/node_modules';
+const path = require('path');
 
 var config = {
     // We split the entry into two specific chunks. Our app and vendors. Vendors
@@ -20,7 +21,7 @@ var config = {
         new webpack.optimize.CommonsChunkPlugin({name:'vendors', filename:'vendors.js'})
     ],
     output: {
-        path:"./dist",
+        path: path.resolve(__dirname, 'dist'),
         filename: "bundle.js"
     },
     module: {

@@ -8,6 +8,9 @@ import { Product } from "./model/product.model";
  * @InventoryApp: the top-level component for our application
  */
 @Component({
+  //When accessing properties in template
+  //and invoking methods from template there is no need 
+  // to call it with this keyword
   template: `
   <div class="inventory-app">
     <products-list 

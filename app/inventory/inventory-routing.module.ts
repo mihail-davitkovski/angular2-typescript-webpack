@@ -10,9 +10,6 @@ const inventoryRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(inventoryRoutes)],
-  exports: [
-    //RouterModule
-  ]
+  imports: [RouterModule.forChild(inventoryRoutes)]
 })
 export class InventoryRoutingModule { }

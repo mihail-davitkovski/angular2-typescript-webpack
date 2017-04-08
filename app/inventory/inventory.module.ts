@@ -13,8 +13,9 @@ import { ProductRowComponent } from "./product-row.component";
 
 @NgModule({
   //View classes that are defined in imports section 
-  // have private access and can be used within templates
-  //in this module
+  // can be used within templates
+  //in this module, actually in the classes specified 
+  //in the declaration
   imports: [
     CommonModule,
     InventoryRoutingModule

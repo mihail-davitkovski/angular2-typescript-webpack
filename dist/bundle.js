@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 268:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16,7 +16,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var product_model_1 = __webpack_require__(399);
+var product_model_1 = __webpack_require__(73);
 /**
  * @InventoryApp: the top-level component for our application
  */
@@ -35,6 +35,9 @@ var InventoryBoxComponent = (function () {
 }());
 InventoryBoxComponent = __decorate([
     core_1.Component({
+        //When accessing properties in template
+        //and invoking methods from template there is no need 
+        // to call it with this keyword
         template: "\n  <div class=\"inventory-app\">\n    <products-list \n      [productList]=\"products\" \n      (onProductSelected)=\"productWasSelected($event)\">\n    </products-list>\n  </div>\n  "
     }),
     __metadata("design:paramtypes", [])
@@ -44,20 +47,88 @@ exports.InventoryBoxComponent = InventoryBoxComponent;
 
 /***/ }),
 
-/***/ 270:
+/***/ 36:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+/**
+ * @ProductRow: A component for the view of single Product
+ */
+var ProductRowComponent = (function () {
+    function ProductRowComponent() {
+    }
+    return ProductRowComponent;
+}());
+ProductRowComponent = __decorate([
+    core_1.Component({
+        selector: 'product-row',
+        inputs: ['product'],
+        host: { 'class': 'item' },
+        template: "\n  <product-image [product]=\"product\"></product-image>\n  <div class=\"content\">\n    <div class=\"header\">{{ product.name }}</div>\n    <div class=\"meta\">\n      <div class=\"product-sku\">SKU #{{ product.sku }}</div>\n    </div>\n    <div class=\"description\">\n      <product-department [product]=\"product\"></product-department>\n    </div>\n  </div>\n  <price-display [price]=\"product.price\"></price-display>\n  "
+    })
+], ProductRowComponent);
+exports.ProductRowComponent = ProductRowComponent;
+
+
+/***/ }),
+
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var app_module_1 = __webpack_require__(396);
-var platform_browser_dynamic_1 = __webpack_require__(169);
+var app_module_1 = __webpack_require__(70);
+var platform_browser_dynamic_1 = __webpack_require__(20);
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
 
 
 /***/ }),
 
-/***/ 395:
+/***/ 68:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var router_1 = __webpack_require__(7);
+var inventory_module_1 = __webpack_require__(72);
+var routes = [
+    { path: '', pathMatch: 'full', redirectTo: 'inventory' }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
+    }
+    return AppRoutingModule;
+}());
+AppRoutingModule = __decorate([
+    core_1.NgModule({
+        imports: [router_1.RouterModule.forRoot(routes), inventory_module_1.InventoryModule],
+        exports: [router_1.RouterModule],
+    })
+], AppRoutingModule);
+exports.AppRoutingModule = AppRoutingModule;
+
+
+/***/ }),
+
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86,7 +157,7 @@ exports.AppComponent = AppComponent;
 
 /***/ }),
 
-/***/ 396:
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99,9 +170,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(52);
-var app_routing_1 = __webpack_require__(397);
-var app_component_1 = __webpack_require__(395);
+var platform_browser_1 = __webpack_require__(5);
+var app_routing_module_1 = __webpack_require__(68);
+var app_component_1 = __webpack_require__(69);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -109,16 +180,19 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
+        //Other  modules whose exported classes are needed 
+        //by component templates declared in this module
         imports: [
             platform_browser_1.BrowserModule,
-            //InventoryAppModule,
-            app_routing_1.AppRoutingModule
+            app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent
         ],
         providers: [],
         //this is only set by the root module
+        //The main appllication view called the root component,
+        //that hosts all other app views.
         bootstrap: [app_component_1.AppComponent],
     })
 ], AppModule);
@@ -127,7 +201,7 @@ exports.AppModule = AppModule;
 
 /***/ }),
 
-/***/ 397:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140,31 +214,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(170);
-var inventory_module_1 = __webpack_require__(398);
-var inventory_box_component_1 = __webpack_require__(268);
-var routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'inventory' },
-    { path: 'inventory', component: inventory_box_component_1.InventoryBoxComponent }
+var router_1 = __webpack_require__(7);
+var inventory_box_component_1 = __webpack_require__(35);
+var product_row_component_1 = __webpack_require__(36);
+var inventoryRoutes = [
+    { path: 'inventory', component: inventory_box_component_1.InventoryBoxComponent },
+    { path: 'product/:id', component: product_row_component_1.ProductRowComponent }
 ];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var InventoryRoutingModule = (function () {
+    function InventoryRoutingModule() {
     }
-    return AppRoutingModule;
+    return InventoryRoutingModule;
 }());
-AppRoutingModule = __decorate([
+InventoryRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [router_1.RouterModule.forRoot(routes), inventory_module_1.InventoryAppModule],
-        exports: [router_1.RouterModule],
+        imports: [router_1.RouterModule.forChild(inventoryRoutes)]
     })
-], AppRoutingModule);
-exports.AppRoutingModule = AppRoutingModule;
-exports.routingComponents = [inventory_box_component_1.InventoryBoxComponent];
+], InventoryRoutingModule);
+exports.InventoryRoutingModule = InventoryRoutingModule;
 
 
 /***/ }),
 
-/***/ 398:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -177,20 +249,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(52);
-var inventory_box_component_1 = __webpack_require__(268);
-var products_list_component_1 = __webpack_require__(404);
-var price_display_component_1 = __webpack_require__(400);
-var product_image_component_1 = __webpack_require__(402);
-var product_department_component_1 = __webpack_require__(401);
-var product_row_component_1 = __webpack_require__(403);
-var InventoryAppModule = (function () {
-    function InventoryAppModule() {
+var common_1 = __webpack_require__(4);
+var inventory_routing_module_1 = __webpack_require__(71);
+var inventory_box_component_1 = __webpack_require__(35);
+var products_list_component_1 = __webpack_require__(77);
+var price_display_component_1 = __webpack_require__(74);
+var product_image_component_1 = __webpack_require__(76);
+var product_department_component_1 = __webpack_require__(75);
+var product_row_component_1 = __webpack_require__(36);
+var InventoryModule = (function () {
+    function InventoryModule() {
     }
-    return InventoryAppModule;
+    return InventoryModule;
 }());
-InventoryAppModule = __decorate([
+InventoryModule = __decorate([
     core_1.NgModule({
+        //View classes that are defined in imports section 
+        // have private access and can be used within templates
+        //in this module
+        imports: [
+            common_1.CommonModule,
+            inventory_routing_module_1.InventoryRoutingModule
+        ],
+        //The View classes are defined here: There are three,
+        //Components, Directives and Pipes. They have private access by default
+        // and can be used only in this module, otherwise they should be exported, i.e
+        //to be placed in the exports array, exports:[]
         declarations: [
             inventory_box_component_1.InventoryBoxComponent,
             product_image_component_1.ProductImageComponent,
@@ -198,16 +282,15 @@ InventoryAppModule = __decorate([
             price_display_component_1.PriceDisplayComponent,
             product_row_component_1.ProductRowComponent,
             products_list_component_1.ProductsListComponent
-        ],
-        imports: [platform_browser_1.BrowserModule],
+        ]
     })
-], InventoryAppModule);
-exports.InventoryAppModule = InventoryAppModule;
+], InventoryModule);
+exports.InventoryModule = InventoryModule;
 
 
 /***/ }),
 
-/***/ 399:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -228,7 +311,7 @@ exports.Product = Product;
 
 /***/ }),
 
-/***/ 400:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -264,7 +347,7 @@ exports.PriceDisplayComponent = PriceDisplayComponent;
 
 /***/ }),
 
-/***/ 401:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -298,7 +381,7 @@ exports.ProductDepartmentComponent = ProductDepartmentComponent;
 
 /***/ }),
 
-/***/ 402:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -332,41 +415,7 @@ exports.ProductImageComponent = ProductImageComponent;
 
 /***/ }),
 
-/***/ 403:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(0);
-/**
- * @ProductRow: A component for the view of single Product
- */
-var ProductRowComponent = (function () {
-    function ProductRowComponent() {
-    }
-    return ProductRowComponent;
-}());
-ProductRowComponent = __decorate([
-    core_1.Component({
-        selector: 'product-row',
-        inputs: ['product'],
-        host: { 'class': 'item' },
-        template: "\n  <product-image [product]=\"product\"></product-image>\n  <div class=\"content\">\n    <div class=\"header\">{{ product.name }}</div>\n    <div class=\"meta\">\n      <div class=\"product-sku\">SKU #{{ product.sku }}</div>\n    </div>\n    <div class=\"description\">\n      <product-department [product]=\"product\"></product-department>\n    </div>\n  </div>\n  <price-display [price]=\"product.price\"></price-display>\n  "
-    })
-], ProductRowComponent);
-exports.ProductRowComponent = ProductRowComponent;
-
-
-/***/ }),
-
-/***/ 404:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -382,17 +431,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var router_1 = __webpack_require__(7);
 /**
  * @ProductsList: A component for rendering all ProductRows and
  * storing the currently selected Product
  */
 var ProductsListComponent = (function () {
-    function ProductsListComponent() {
+    function ProductsListComponent(router) {
+        this.router = router;
         this.onProductSelected = new core_1.EventEmitter();
     }
     ProductsListComponent.prototype.clicked = function (product) {
         this.currentProduct = product;
         this.onProductSelected.emit(product);
+        this.router.navigate(['/product', product.sku]);
     };
     ProductsListComponent.prototype.isSelected = function (product) {
         if (!product || !this.currentProduct) {
@@ -409,19 +461,19 @@ ProductsListComponent = __decorate([
         outputs: ['onProductSelected'],
         template: "\n  <div class=\"ui items\">\n    <product-row \n      *ngFor=\"let myProduct of productList\" \n      [product]=\"myProduct\" \n      (click)='clicked(myProduct)'\n      [class.selected]=\"isSelected(myProduct)\">\n    </product-row>\n  </div>\n  "
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [router_1.Router])
 ], ProductsListComponent);
 exports.ProductsListComponent = ProductsListComponent;
 
 
 /***/ }),
 
-/***/ 405:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(270);
+module.exports = __webpack_require__(39);
 
 
 /***/ })
 
-},[405]);
+},[78]);

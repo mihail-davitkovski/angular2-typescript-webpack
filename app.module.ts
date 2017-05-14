@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { AppRoutingModule } from './app-routing.module';
+import { routing } from './app.routing';
+import { InventoryModule } from './app/inventory/inventory.module';
 import { AppComponent } from "./app.component";
 
 @NgModule({
@@ -8,7 +9,8 @@ import { AppComponent } from "./app.component";
     //by component templates declared in this module
     imports: [
         BrowserModule,
-        AppRoutingModule
+        routing,
+        InventoryModule
         ],
     declarations: [
         AppComponent

@@ -1,9 +1,11 @@
-
-import { enableProdMode, Component } from "@angular/core";
+import { enableProdMode, Component, OnInit } from "@angular/core";
 
 import { ProductsListComponent } from "./products-list.component";
 
 import { Product } from "./model/product.model";
+import { InventoryDataService } from "./services/inventory.data.service";
+import { InventoryActionsService } from "./services/inventory-actions.service";
+
 /**
  * @InventoryApp: the top-level component for our application
  */
@@ -18,29 +20,23 @@ import { Product } from "./model/product.model";
       (onProductSelected)="productWasSelected($event)">
     </products-list>
   </div>
-  `
+  `,
+  providers: [InventoryDataService, InventoryActionsService]
 })
-export class InventoryBoxComponent {
+export class InventoryBoxComponent implements OnInit {
   products: Product[];
 
-  constructor() {
-    this.products = [
-      new Product(
-        'MYSHOES', 'Black Running Shoes',
-        '/resources/images/products/black-shoes.jpg',
-        ['Men', 'Shoes', 'Running Shoes'],
-        109.99),
-      new Product(
-        'NEATOJACKET', 'Blue Jacket',
-        '/resources/images/products/blue-jacket.jpg',
-        ['Women', 'Apparel', 'Jackets & Vests'],
-        238.99),
-      new Product(
-        'NICEHAT', 'A Nice Black Hat',
-        '/resources/images/products/black-hat.jpg',
-        ['Men', 'Accessories', 'Hats'],
-        29.99)
-      ];
+  constructor(private inventoryDataService: InventoryDataService, 
+  private inventoryActionsService: InventoryActionsService) {
+    this.inventoryDataService.getProducts().subscribe(
+      products => {
+        this.products = products
+      }
+    );
+  }
+
+  ngOnInit() {
+    this.inventoryActionsService.getAllProducts();
   }
 
   productWasSelected(product: Product): void {

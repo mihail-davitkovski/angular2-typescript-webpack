@@ -44,6 +44,7 @@ export class ProductsListComponent {
   constructor(private router: Router) {
     this.onProductSelected = new EventEmitter<Product>();
   }
+  
 
   clicked(product: Product): void {
     this.currentProduct = product;

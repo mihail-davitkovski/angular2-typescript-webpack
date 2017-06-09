@@ -14,10 +14,10 @@ export class InventoryActionsService {
   constructor(private store: Store<AppState>, private http: Http) { }
 
   getAllProducts() {
-    this.store.dispatch(createAction(InventoryActionType.REQUEST_PRODUCTS_STARTED));
+    this.store.dispatch(createAction(InventoryActionType.REQUEST_PRODUCTS_STARTED.toString()));
     this.http
       .get('http://localhost:3000/app/inventory/products.json')
       .map(response => response.json())
-      .subscribe(data => this.store.dispatch(createAction(InventoryActionType.RECEIVE_PRODUCTS_FINSIHED, data)))
+      .subscribe(data => this.store.dispatch(createAction(InventoryActionType.RECEIVE_PRODUCTS_FINSIHED.toString(), data)))
   }
 }

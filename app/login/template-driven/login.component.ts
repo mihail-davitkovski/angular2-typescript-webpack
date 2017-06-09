@@ -1,32 +1,33 @@
-/*import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { LoginActionsService } from "../services/login.actions.service";
+import { LoginDataService } from "../services/login.data.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: "app/login/template-driven/templates/login.component.html",
+  //styleUrls: ['./login.component.css']
+  providers: [LoginActionsService, LoginDataService]
 })
 export class LoginComponent {
   message: string;
+  isFormSubmitted: boolean;
 
-  constructor(public authService: AuthService) {
-    this.message = '';
+  constructor(private loginActionService: LoginActionsService, 
+  private loginDataService: LoginDataService) {
+    loginDataService.isUserLoggedIn().subscribe(value=>{
+      
+    })
   }
 
-  login(username: string, password: string): boolean {
-    this.message = '';
-    if (!this.authService.login(username, password)) {
-      this.message = 'Incorrect credentials.';
-      setTimeout(function() {
-        this.message = '';
-      }.bind(this), 2500);
+  login(form: NgForm) {
+    this.isFormSubmitted = true;
+    if (form.valid) {
+      this.loginActionService.login(form.value);
     }
-    return false;
   }
 
-  logout(): boolean {
-    this.authService.logout();
-    return false;
+  logout() {
+    this.loginActionService.logout();
   }
 
-}*/
+}

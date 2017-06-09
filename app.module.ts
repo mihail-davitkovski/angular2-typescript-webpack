@@ -7,6 +7,8 @@ import { InventoryModule } from './app/inventory/inventory.module';
 import { rootReducer } from './app/redux/root.reducer';
 import { AppComponent } from "./app.component";
 import { HttpModule } from '@angular/http';
+import { LoginModule } from "./app/login/login.module";
+import { CoreModule } from "./app/core/core.module";
 
 @NgModule({
     //Other  modules whose exported classes are needed 
@@ -15,14 +17,16 @@ import { HttpModule } from '@angular/http';
         BrowserModule,
         HttpModule,
         routing,
+        CoreModule,
+        StoreModule.provideStore(rootReducer),
         InventoryModule,
-        StoreModule.provideStore(rootReducer)
+        LoginModule
     ],
     declarations: [
         AppComponent
     ],
     providers: [
-
+    
     ],
     //this is only set by the root module
     //The main appllication view called the root component,

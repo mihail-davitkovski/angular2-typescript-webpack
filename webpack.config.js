@@ -21,9 +21,9 @@ var config = {
             "@angular/router",
             "@ngrx/core",
             "@ngrx/store",
-            //"core-js",
-            //"rxjs",
-            //"zone.js"
+            "core-js",
+            "rxjs",
+            "zone.js"
             ]
     },
     output: {

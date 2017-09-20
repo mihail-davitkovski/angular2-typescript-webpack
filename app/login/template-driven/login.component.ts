@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LoginActionsService } from "../services/login.actions.service";
+import { ILoginActionsService, LoginActionsService } from "../services/login.actions.service";
 import { LoginDataService } from "../services/login.data.service";
 
 @Component({
   templateUrl: "app/login/template-driven/templates/login.component.html",
   //styleUrls: ['./login.component.css']
-  providers: [LoginActionsService, LoginDataService]
+  providers: [{provide: LoginActionsService, useClass: LoginActionsService}, LoginDataService]
 })
 export class LoginComponent {
   message: string;
   isFormSubmitted: boolean;
 
-  constructor(private loginActionService: LoginActionsService, 
+  constructor(private loginActionService: ILoginActionsService, 
   private loginDataService: LoginDataService) {
     loginDataService.isUserLoggedIn().subscribe(value=>{
       

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { LoginActionsService } from "../services/login.actions.service";
+import { ILoginActionsService, LoginActionsService } from "../services/login.actions.service";
 import { LoginDataService } from "../services/login.data.service";
 
 @Component({
   templateUrl: "app/login/model-driven/templates/login.component.html",
   //styleUrls: ['./login.component.css']
-  providers: [LoginActionsService]
+  providers: [{provide:ILoginActionsService, useClass: LoginActionsService }, LoginDataService]
 })
 export class LoginComponent {
   message: string;
@@ -25,7 +25,7 @@ export class LoginComponent {
     password: this.password
   });
 
-  constructor(private loginActionService: LoginActionsService,
+  constructor(private loginActionService: ILoginActionsService,
     private loginDataService: LoginDataService, private builder: FormBuilder) {
     loginDataService.isUserLoggedIn().subscribe(value => {
 

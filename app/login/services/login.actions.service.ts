@@ -7,8 +7,14 @@ import { AppState } from '../../../app/redux/app.state';
 import { createAction } from "../../../app/redux/action-creator"
 import { Login } from "../model/login.model";
 
+export abstract class ILoginActionsService
+{
+  abstract login(credentials: Login);
+  abstract logout();
+}
+
 @Injectable()
-export class LoginActionsService {
+export class LoginActionsService implements ILoginActionsService{
 
   static LOGIN_USER_PENDING = 'LOGIN_USER_PENDING';
   static LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';

@@ -6,7 +6,7 @@ import { routing } from './app.routing';
 import { InventoryModule } from './app/inventory/inventory.module';
 import { rootReducer } from './app/redux/root.reducer';
 import { AppComponent } from "./app.component";
-import { HttpModule } from '@angular/http';
+import { HttpClientModule  } from '@angular/common/http';
 import { LoginModule } from "./app/login/login.module";
 import { CoreModule } from "./app/core/core.module";
 
@@ -15,7 +15,7 @@ import { CoreModule } from "./app/core/core.module";
     //by component templates declared in this module
     imports: [
         BrowserModule,
-        HttpModule,
+        HttpClientModule,
         routing,
         CoreModule,
         StoreModule.provideStore(rootReducer),

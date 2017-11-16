@@ -11,15 +11,13 @@ var config = {
     {
         app: ["./main.ts"],
         vendors: [
+            "@angular/core",
             "@angular/common",
             "@angular/compiler",
-            '@angular/core',
             "@angular/forms",
-            "@angular/http",
             "@angular/platform-browser",
             "@angular/platform-browser-dynamic",
             "@angular/router",
-            "@ngrx/core",
             "@ngrx/store",
             "core-js",
             "rxjs",

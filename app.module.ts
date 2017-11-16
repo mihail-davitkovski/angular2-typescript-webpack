@@ -1,14 +1,17 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { StoreModule } from '@ngrx/store';
+import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { routing } from './app.routing';
+import { CoreModule } from "./app/core/core.module";
 import { InventoryModule } from './app/inventory/inventory.module';
 import { rootReducer } from './app/redux/root.reducer';
 import { AppComponent } from "./app.component";
-import { HttpClientModule  } from '@angular/common/http';
 import { LoginModule } from "./app/login/login.module";
-import { CoreModule } from "./app/core/core.module";
+import { InMemoryDataService } from "./app/in-memory-data.service";
+
 
 @NgModule({
     //Other  modules whose exported classes are needed 
@@ -18,9 +21,12 @@ import { CoreModule } from "./app/core/core.module";
         HttpClientModule,
         routing,
         CoreModule,
-        StoreModule.provideStore(rootReducer),
+        StoreModule.forRoot(rootReducer),
         InventoryModule,
-        LoginModule
+        LoginModule,
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService, { dataEncapsulation: false }
+          )
     ],
     declarations: [
         AppComponent
